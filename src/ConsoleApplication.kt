@@ -1,9 +1,11 @@
-import java.io.IOException
+import Utilites.Companion.getUserIntParameter
+import Utilites.Companion.printResultSet
+
 import java.util.*
 
 var conScanner = Scanner(System.`in`)
 
-private val connector : DBConnector = DBConnector()
+private val connector: DBConnector = DBConnector()
 
 fun main(args: Array<String>) {
     println(
@@ -17,19 +19,7 @@ fun main(args: Array<String>) {
 //    val third = getUserIntParameter("third parameter (int):")
 
     connector.newConnection()
+    val selectResult = connector.getResultSetOfSelect("characters")
+    printResultSet(selectResult, 15)
 
-}
-
-fun getUserIntParameter(text: String): Int {
-    var parameter: Int? = null
-    while (parameter == null) {
-        print("$text ")
-        try {
-            parameter = conScanner.nextInt()
-        } catch (e : InputMismatchException){
-            print("Неприёмлимое значение\n")
-            conScanner = Scanner(System.`in`)
-        }
-    }
-    return parameter
 }
