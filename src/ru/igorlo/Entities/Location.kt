@@ -4,7 +4,7 @@ import ru.igorlo.Constants
 import ru.igorlo.Utilities
 import kotlin.random.Random
 
-data class Location(val name : String, val x_coord : Int, val y_coord : Int) : DBEntity {
+data class Location(val name: String, val x_coord: Int, val y_coord: Int) : DBEntity {
     override fun getValuesMap(): Map<String, Any> {
         val map = HashMap<String, Any>()
         map["name"] = name

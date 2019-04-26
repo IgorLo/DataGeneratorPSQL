@@ -7,7 +7,7 @@ object Constants {
     const val DB_HOST_DEFAULT = "localhost"
     const val DB_PORT_DEFAULT = 5432
 
-    const val GEN_ITEMS_QUANTITY_DEFAULT = 10
+    const val GEN_ITEMS_QUANTITY_DEFAULT = 7
     const val GEN_ITEMS_MIN_DAMAGE = 1
     const val GEN_ITEMS_MIN_WEIGHT = 1
     const val GEN_ITEMS_MIN_PRICE = 1
@@ -15,15 +15,17 @@ object Constants {
     const val GEN_ITEMS_MAX_WEIGHT = 20 - GEN_ITEMS_MIN_WEIGHT
     const val GEN_ITEMS_MAX_PRICE = 5000 - GEN_ITEMS_MIN_PRICE
 
-    const val GEN_SKILLS_QUANTITY_DEFAULT = 10
+    const val GEN_SKILLS_QUANTITY_DEFAULT = 5
     const val GEN_SKILLS_MIN_MULT = 0.1
     const val GEN_SKILLS_MAX_MULT = 10.0 - GEN_SKILLS_MIN_MULT
 
-    const val GEN_LOCATIONS_QUANTITY_DEFAULT = 5
+    const val GEN_LOCATIONS_QUANTITY_DEFAULT = 4
     const val GEN_LOCATIONS_MIN_X = 1
     const val GEN_LOCATIONS_MIN_Y = 1
     const val GEN_LOCATIONS_MAX_X = 1000 - GEN_LOCATIONS_MIN_X
     const val GEN_LOCATIONS_MAX_Y = 1000 - GEN_LOCATIONS_MIN_Y
+
+    const val GEN_CITIES_QUANTITY_DEFAULT = 1
 
     const val TEXT_INTRO = "\n\n" +
             "\t----------------------------------------------------------------\n" +
@@ -138,6 +140,86 @@ object Constants {
         "Масса",
         "Гривняк",
         "Тьма-тьмущая"
+    )
+
+    val GEN_CITIES_NAMES = listOf(
+        "Санкт-Петербург",
+        "Амстердам",
+        "Антверпен",
+        "Афины",
+        "Барселона",
+        "Берлин",
+        "Брюгге",
+        "Варшава",
+        "Вашингтон",
+        "Вена",
+        "Венеция",
+        "Гагра",
+        "Гамбург",
+        "Геленджик",
+        "Дрезден",
+        "Дубай",
+        "Дубровник",
+        "Евпатория",
+        "Ейск",
+        "Екатеринбург",
+        "Женева",
+        "Загреб",
+        "Иерусалим",
+        "Ижевск",
+        "Иркутск",
+        "Йошкар-Ола",
+        "Казань",
+        "Кёльн",
+        "Киев",
+        "Лас-Вегас",
+        "Лондон",
+        "Лос-Анджелес",
+        "Мадрид",
+        "Милан",
+        "Минск",
+        "Москва",
+        "Мюнхен",
+        "Неаполь",
+        "Новосибирск",
+        "Нью-Йорк",
+        "Одесса",
+        "Омск",
+        "Осло",
+        "Париж",
+        "Пекин",
+        "Прага",
+        "Рим",
+        "Рио-де-Жанейро",
+        "Ростов-на-Дону",
+        "Севастополь",
+        "София",
+        "Сочи",
+        "Таллин",
+        "Тбилиси",
+        "Тель-Авив",
+        "Ульяновск",
+        "Уфа",
+        "Филадельфия",
+        "Флоренция",
+        "Хайфа",
+        "Ханой",
+        "Харьков",
+        "Хельсинки",
+        "Хошимин",
+        "Цюрих",
+        "Чебоксары",
+        "Челябинск",
+        "Чикаго",
+        "Шанхай",
+        "Штутгарт",
+        "Щецин",
+        "Эйлат",
+        "Эйндховен",
+        "Юрмала",
+        "Якутск",
+        "Ялта",
+        "Ярославль"
     )
 
     val NAMES_FIRSTNAME_FIRSTHALF = listOf(

@@ -24,7 +24,7 @@ class StatementBuilder {
 
         fun insertColumnsInTable(tableName: String, fields: Collection<String>): String {
             val statementText = StringBuilder()
-            statementText.append("INSERT INTO $tableName (" + fields.joinToString() + ") VALUES (?"+ ",?".repeat(fields.size - 1) + ")")
+            statementText.append("INSERT INTO $tableName (" + fields.joinToString() + ") VALUES (?" + ",?".repeat(fields.size - 1) + ")")
             return statementText.toString()
         }
     }

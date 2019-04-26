@@ -31,7 +31,7 @@ class DBConnector {
         connection = DriverManager.getConnection("jdbc:postgresql://$host:$port/$db_name", db_user, db_pass)
     }
 
-    fun getResultSetOfSelect(tableName: String, limit : Int = 0, vararg fields: String): ResultSet {
+    fun getResultSetOfSelect(tableName: String, limit: Int = 0, vararg fields: String): ResultSet {
         logger.info("Executing SELECT from table $tableName by fields")
         if (connection == null) {
             logger.error("Cannot execute SELECT, because there's no connection to DB")
@@ -54,27 +54,27 @@ class DBConnector {
         exitProcess(1)
     }
 
-    fun insertDataInTable(tableName: String, data : Collection<DBEntity>) {
+    fun insertDataInTable(tableName: String, data: Collection<DBEntity>) {
         logger.info("Trying to insert data in table")
         val listOfFields = data.first().getValuesMap().keys
         val statement = StatementBuilder.insertColumnsInTable(tableName, listOfFields)
-        val preparedStatement : PreparedStatement
+        val preparedStatement: PreparedStatement
         try {
             logger.info("Preparing statement")
             preparedStatement = connection!!.prepareStatement(statement)
             logger.info("Prepared successfully!")
-        } catch (e : PSQLException) {
+        } catch (e: PSQLException) {
             logger.error("Oops! Could not prepare statement - something wrong with connection!")
             e.printStackTrace()
             exitProcess(1)
         }
 
-        var count : Int
+        var count: Int
         logger.info("Adding data to statement...")
-        for (element in data){
+        for (element in data) {
             count = 1
-            for (entry in element.getValuesMap().entries){
-                when (entry.value){
+            for (entry in element.getValuesMap().entries) {
+                when (entry.value) {
                     is String -> preparedStatement.setString(count, entry.value as String)
                     is Int -> preparedStatement.setInt(count, entry.value as Int)
                     is Boolean -> preparedStatement.setBoolean(count, entry.value as Boolean)
@@ -91,7 +91,7 @@ class DBConnector {
             logger.info("Executing prepared statement")
             preparedStatement.executeBatch()
             logger.info("Success!")
-        } catch (e : PSQLException) {
+        } catch (e: PSQLException) {
             logger.error("Oops! Could not execute statement! Something went wrong!")
             e.printStackTrace()
             exitProcess(1)

@@ -2,6 +2,6 @@ package ru.igorlo.Entities
 
 interface DBEntity {
 
-    fun getValuesMap() : Map<String, Any>
+    fun getValuesMap(): Map<String, Any>
 
 }
