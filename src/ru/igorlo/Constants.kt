@@ -7,6 +7,13 @@ object Constants {
     const val DB_HOST_DEFAULT = "localhost"
     const val DB_PORT_DEFAULT = 5432
 
+    const val RANDOM_STRING_SOURCE =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZ_" +
+                "=-+0123456789zxcvbnm,./;lkjh" +
+                "gfdsaqwertyuiop[]ячсмитьбюфы" +
+                "вапролджэйцукенгшщзхъйЁЙЦУКЕ" +
+                "НГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ"
+
     const val GEN_ITEMS_QUANTITY_DEFAULT = 7
     const val GEN_ITEMS_MIN_DAMAGE = 1
     const val GEN_ITEMS_MIN_WEIGHT = 1
@@ -26,6 +33,10 @@ object Constants {
     const val GEN_LOCATIONS_MAX_Y = 1000 - GEN_LOCATIONS_MIN_Y
 
     const val GEN_CITIES_QUANTITY_DEFAULT = 1
+
+    const val GEN_CLANS_QUANTITY_DEFAULT = 2
+    const val GEN_CLANS_MIN_RATING = 1
+    const val GEN_CLANS_MAX_RATING = 100 - GEN_CLANS_MIN_RATING
 
     const val TEXT_INTRO = "\n\n" +
             "\t----------------------------------------------------------------\n" +
@@ -220,6 +231,60 @@ object Constants {
         "Якутск",
         "Ялта",
         "Ярославль"
+    )
+
+    val GEN_CLANS_NAMES = listOf(
+        "NesT",
+        "A-TeaM",
+        "Dragons of night",
+        "Империя Хаира",
+        "Ассасины крови",
+        "Большие Маракасы",
+        "Искатели",
+        "Wars of darkness",
+        "Отважные союзники",
+        "Dark Void",
+        "Сталахтиты",
+        "ExcLusive Light",
+        "Школа Спартанцев",
+        "Premium",
+        "DarkRaven",
+        "CoinS",
+        "Бойцы Хаира",
+        "Tales Of Summer",
+        "Повелители тьмы",
+        "DareDevils",
+        "Night Hooligans",
+        "Жуз",
+        "Lightbearers",
+        "Кузнецы Счастья",
+        "Monster Force",
+        "Age of Heroes",
+        "Пещерные Войны",
+        "Вымершие Драконы",
+        "SH-Undead",
+        "Легион Рассвета",
+        "Тираны",
+        "Орден Невидимых",
+        "Art Of War",
+        "Liandri",
+        "Пилигрим",
+        "Доблестники Хаира",
+        "Red Stars",
+        "Подводная гвардия",
+        "Редут",
+        "Пламя Свободы",
+        "Крутые белки",
+        "Веселые дракошки",
+        "Гильдия Вершителей",
+        "rzr-team",
+        "Hand Of Justice",
+        "Golden Rodger",
+        "Легион Империи",
+        "The Shadow Knights",
+        "Они",
+        "Адские карателИ",
+        "Veritas"
     )
 
     val NAMES_FIRSTNAME_FIRSTHALF = listOf(

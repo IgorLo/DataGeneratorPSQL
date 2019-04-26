@@ -50,6 +50,16 @@ object Utilities {
         return parameter
     }
 
+    fun generateRandomString(lenght: Int, randomizer: Random = Random.Default): String {
+        val sequence = sequence {
+            yieldAll(generateSequence { randomizer.nextInt(Constants.RANDOM_STRING_SOURCE.length) })
+        }
+        return sequence
+            .take(lenght)
+            .map(Constants.RANDOM_STRING_SOURCE::get)
+            .joinToString("")
+    }
+
     fun generateNpcName(shortName: Boolean = false, randomizer: Random = Random.Default): String {
         val stringBuilder = StringBuilder()
 
@@ -83,6 +93,10 @@ object Utilities {
 
     fun generateCityName(randomizer: Random = Random.Default): String {
         return Constants.GEN_CITIES_NAMES.random(randomizer)
+    }
+
+    fun generateClanName(randomizer: Random): String {
+        return (Constants.GEN_CLANS_NAMES.random(randomizer) + "_" + generateRandomString(5)).take(20)
     }
 
 }

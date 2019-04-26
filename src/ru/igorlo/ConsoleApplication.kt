@@ -1,9 +1,7 @@
 package ru.igorlo
 
 import ru.igorlo.Entities.City
-import ru.igorlo.Entities.Item
-import ru.igorlo.Entities.Location
-import ru.igorlo.Entities.Skill
+import ru.igorlo.Entities.Clan
 import ru.igorlo.Utilities.printResultSet
 import java.util.*
 
@@ -35,8 +33,15 @@ fun main(args: Array<String>) {
 //    connector.insertDataInTable("locations", Location.generateLocations(2))
 //    printResultSet(connector.getResultSetOfSelect("locations"))
 //
-    printResultSet(connector.getResultSetOfSelect("cities"))
-    connector.insertDataInTable("cities", City.generateCities(3))
-    printResultSet(connector.getResultSetOfSelect("cities"))
+//    printResultSet(connector.getResultSetOfSelect("cities"))
+//    connector.insertDataInTable("cities", City.generateCities(3))
+//    printResultSet(connector.getResultSetOfSelect("cities"))
+
+//    printResultSet(connector.getResultSetOfSelect("clans"), 20)
+//    connector.insertDataInTable("clans", Clan.generateClans(10))
+//    printResultSet(connector.getResultSetOfSelect("clans"), 20)
+
+
+
 
 }
