@@ -1,22 +1,25 @@
+package ru.igorlo
+
 import org.slf4j.LoggerFactory
+import java.lang.StringBuilder
 import java.sql.ResultSet
 import java.util.*
+import kotlin.random.Random
 
 class Utilities {
-
     companion object {
-
         private val logger = LoggerFactory.getLogger(Utilities::class.java)
 
         fun printResultSet(resultSet: ResultSet, valueMaxSize: Int = 10) {
             logger.info("Printing ResultSet")
             val metaData = resultSet.metaData
+            println("\n".padEnd(metaData.columnCount * (valueMaxSize + 1), '-'))
             for (i in 1..metaData.columnCount) {
                 System.out.print(metaData.getColumnName(i).take(valueMaxSize).padEnd(valueMaxSize))
                 if (i < metaData.columnCount)
                     print('|')
             }
-            println("\n".padEnd(metaData.columnCount * valueMaxSize, '-'))
+            println("\n".padEnd(metaData.columnCount * (valueMaxSize + 1), '-'))
             while (resultSet.next()) {
                 for (i in 1..metaData.columnCount) {
                     if (i > 1) print("|")
@@ -29,6 +32,7 @@ class Utilities {
                 }
                 println("")
             }
+            println("\n".padEnd(metaData.columnCount * (valueMaxSize + 1), '-'))
         }
 
         fun getUserIntParameter(text: String): Int {
@@ -45,6 +49,36 @@ class Utilities {
             }
             return parameter
         }
-    }
 
+        fun generateNpcName(shortName : Boolean = false, randomizer: Random = Random.Default): String {
+            val stringBuilder = StringBuilder()
+
+            //firstname
+            stringBuilder
+                .append(Constants.NAMES_FIRSTNAME_FIRSTHALF.random())
+                .append(Constants.NAMES_FIRSTNAME_SECONDHALF.random())
+
+            //secondname
+            if (randomizer.nextDouble() < 0.6)
+                stringBuilder.append(" ").append(Constants.NAMES_SECOND_NAME.random())
+
+            //postfix
+            if (randomizer.nextDouble() < 0.6)
+                stringBuilder.append(" ").append(Constants.NAMES_AFTER_NAME.random())
+
+            return stringBuilder.toString()
+        }
+
+        fun generateItemName(randomizer: Random = Random.Default): String {
+            return Constants.GEN_ITEMS_NAMES.random(randomizer)
+        }
+
+        fun generateSkillName(randomizer: Random = Random.Default): String {
+            return Constants.GEN_SKILLS_NAMES.random(randomizer)
+        }
+
+        fun generateLocationName(randomizer: Random = Random.Default): String {
+            return Constants.GEN_LOCATIONS_NAMES.random(randomizer)
+        }
+    }
 }
