@@ -1,6 +1,6 @@
-package ru.igorlo.Entities
+package ru.igorlo.Generation.Entities
 
-import ru.igorlo.Constants
+import ru.igorlo.Generation.Constants
 import java.sql.Timestamp
 import kotlin.collections.HashMap
 import kotlin.random.Random
@@ -39,7 +39,14 @@ data class NpcFight(
         ): Collection<NpcFight> {
             val list = mutableListOf<NpcFight>()
             for (i in 0..quantity) {
-                list.add(generateNpcFight(npcSource, characterSource, locationSource, randomizer))
+                list.add(
+                    generateNpcFight(
+                        npcSource,
+                        characterSource,
+                        locationSource,
+                        randomizer
+                    )
+                )
             }
             return list
         }
@@ -58,9 +65,18 @@ data class NpcFight(
                 characterSource.random(randomizer),
                 npcSource.random(randomizer),
                 randomizer.nextBoolean(),
-                randomizer.nextInt(Constants.GEN_NPC_FIGHTS_PLAYER_LOSTHP_MIN, Constants.GEN_NPC_FIGHTS_PLAYER_LOSTHP_MAX),
-                randomizer.nextInt(Constants.GEN_NPC_FIGHTS_NPC_LOSTHP_MIN, Constants.GEN_NPC_FIGHTS_NPC_LOSTHP_MAX),
-                randomizer.nextInt(Constants.GEN_NPC_FIGHTS_GOTMONEY_MIN, Constants.GEN_NPC_FIGHTS_GOTMONEY_MAX),
+                randomizer.nextInt(
+                    Constants.GEN_NPC_FIGHTS_PLAYER_LOSTHP_MIN,
+                    Constants.GEN_NPC_FIGHTS_PLAYER_LOSTHP_MAX
+                ),
+                randomizer.nextInt(
+                    Constants.GEN_NPC_FIGHTS_NPC_LOSTHP_MIN,
+                    Constants.GEN_NPC_FIGHTS_NPC_LOSTHP_MAX
+                ),
+                randomizer.nextInt(
+                    Constants.GEN_NPC_FIGHTS_GOTMONEY_MIN,
+                    Constants.GEN_NPC_FIGHTS_GOTMONEY_MAX
+                ),
                 locationSource.random(randomizer)
             )
         }

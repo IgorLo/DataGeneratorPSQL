@@ -1,6 +1,6 @@
-package ru.igorlo.Entities
+package ru.igorlo.Generation.Entities
 
-import ru.igorlo.Constants
+import ru.igorlo.Generation.Constants
 import ru.igorlo.Utilities
 import kotlin.math.floor
 import kotlin.random.Random
@@ -29,7 +29,12 @@ data class Skill(val name: String, val mult: Double) : DBEntity {
         private fun generateSkill(randomizer: Random = Random.Default): Skill {
             return Skill(
                 Utilities.generateSkillName(),
-                floor(randomizer.nextDouble(Constants.GEN_SKILLS_MIN_MULT, Constants.GEN_SKILLS_MAX_MULT)*100)/100
+                floor(
+                    randomizer.nextDouble(
+                        Constants.GEN_SKILLS_MIN_MULT,
+                        Constants.GEN_SKILLS_MAX_MULT
+                    ) * 100
+                ) / 100
             )
         }
     }

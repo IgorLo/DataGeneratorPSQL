@@ -1,6 +1,6 @@
-package ru.igorlo.Entities
+package ru.igorlo.Generation.Entities
 
-import ru.igorlo.Constants
+import ru.igorlo.Generation.Constants
 import ru.igorlo.Utilities
 import kotlin.random.Random
 

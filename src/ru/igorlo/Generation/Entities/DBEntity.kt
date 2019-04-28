@@ -1,4 +1,4 @@
-package ru.igorlo.Entities
+package ru.igorlo.Generation.Entities
 
 interface DBEntity {
 

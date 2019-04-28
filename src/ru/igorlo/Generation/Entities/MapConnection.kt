@@ -1,11 +1,12 @@
-package ru.igorlo.Entities
+package ru.igorlo.Generation.Entities
 
-import ru.igorlo.Constants
+import ru.igorlo.Generation.Constants
 import java.util.*
 import kotlin.collections.HashMap
 import kotlin.random.Random
 
-data class MapConnection(val fk_from_location : Int, val fk_to_location : Int) : DBEntity {
+data class MapConnection(val fk_from_location : Int, val fk_to_location : Int) :
+    DBEntity {
     override fun getValuesMap(): Map<String, Any> {
         val map = HashMap<String, Any>()
         map["fk_from_location"] = fk_from_location
@@ -23,7 +24,8 @@ data class MapConnection(val fk_from_location : Int, val fk_to_location : Int) :
                 return Collections.emptyList()
             val list = mutableListOf<MapConnection>()
             for (i in 0..quantity) {
-                val connection = generateConnection(source, randomizer)
+                val connection =
+                    generateConnection(source, randomizer)
                 if (!list.contains(connection))
                     list.add(connection)
             }

@@ -1,8 +1,8 @@
-package ru.igorlo
+package ru.igorlo.Generation
 
 import org.postgresql.util.PSQLException
 import org.slf4j.LoggerFactory
-import ru.igorlo.Entities.DBEntity
+import ru.igorlo.Generation.Entities.DBEntity
 import java.sql.*
 import kotlin.system.exitProcess
 
@@ -130,7 +130,8 @@ class DBConnector {
         logger.info("Setting field $fieldFk in table $tableName to random id from $tableFrom")
         try {
             val statement = connection!!.createStatement()
-            val statementText = StatementBuilder.setFieldToRandomId(tableName, tableFrom, fieldFk, whereCondition)
+            val statementText =
+                StatementBuilder.setFieldToRandomId(tableName, tableFrom, fieldFk, whereCondition)
             statement.executeUpdate(statementText)
         } catch (e : PSQLException){
             logger.error("Oops! Cannot do that! Something went wrong!")
@@ -142,7 +143,14 @@ class DBConnector {
     fun addLinks(table: String, fieldFirst: String, fieldSecond: String, tableFromFirst: String, tableFromSecond: String, quantity: Int) {
         logger.info("Adding linking rows for $tableFromFirst and $tableFromSecond in table $table")
         try {
-            val statementText = StatementBuilder.addLinks(table, fieldFirst, fieldSecond, tableFromFirst, tableFromSecond, quantity)
+            val statementText = StatementBuilder.addLinks(
+                table,
+                fieldFirst,
+                fieldSecond,
+                tableFromFirst,
+                tableFromSecond,
+                quantity
+            )
             val statement = connection!!.createStatement()
             statement.executeUpdate(statementText)
         } catch (e : PSQLException){

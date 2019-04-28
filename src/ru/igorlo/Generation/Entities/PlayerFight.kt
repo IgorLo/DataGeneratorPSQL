@@ -1,6 +1,6 @@
-package ru.igorlo.Entities
+package ru.igorlo.Generation.Entities
 
-import ru.igorlo.Constants
+import ru.igorlo.Generation.Constants
 import java.sql.Timestamp
 import kotlin.collections.HashMap
 import kotlin.random.Random
@@ -34,7 +34,13 @@ data class PlayerFight(
         ): Collection<PlayerFight> {
             val list = mutableListOf<PlayerFight>()
             for (i in 0..quantity) {
-                list.add(generatePlayerFight(characterSource, locationSource, randomizer))
+                list.add(
+                    generatePlayerFight(
+                        characterSource,
+                        locationSource,
+                        randomizer
+                    )
+                )
             }
             return list
         }

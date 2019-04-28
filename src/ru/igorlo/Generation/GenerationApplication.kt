@@ -1,6 +1,7 @@
-package ru.igorlo
+package ru.igorlo.Generation
 
-import ru.igorlo.Entities.*
+import ru.igorlo.Generation.Entities.*
+import ru.igorlo.Utilities
 import ru.igorlo.Utilities.getUserIntParameter
 import ru.igorlo.Utilities.printResultSet
 import java.util.*
@@ -95,7 +96,8 @@ object GenerationApplication {
         println("-".repeat(20))
 
         println("Generating npcs")
-        connector.insertDataInTable("npcs", NPC.generateNpcs(connector.getListOfIds("locations"), 10))
+        connector.insertDataInTable("npcs", NPC.generateNpcs(
+            connector.getListOfIds("locations"), 10))
         printResultSet(connector.getResultSetOfSelect("npcs", limit), 20)
         println("-".repeat(20))
 

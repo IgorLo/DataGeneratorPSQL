@@ -1,6 +1,6 @@
-package ru.igorlo.Entities
+package ru.igorlo.Generation.Entities
 
-import ru.igorlo.Constants
+import ru.igorlo.Generation.Constants
 import ru.igorlo.Utilities
 import kotlin.random.Random
 
@@ -28,8 +28,14 @@ data class Location(val name: String, val x_coord: Int, val y_coord: Int) : DBEn
         private fun generateLocation(randomizer: Random = Random.Default): Location {
             return Location(
                 Utilities.generateLocationName(randomizer),
-                randomizer.nextInt(Constants.GEN_LOCATIONS_MIN_X, Constants.GEN_LOCATIONS_MAX_X),
-                randomizer.nextInt(Constants.GEN_LOCATIONS_MIN_Y, Constants.GEN_LOCATIONS_MAX_Y)
+                randomizer.nextInt(
+                    Constants.GEN_LOCATIONS_MIN_X,
+                    Constants.GEN_LOCATIONS_MAX_X
+                ),
+                randomizer.nextInt(
+                    Constants.GEN_LOCATIONS_MIN_Y,
+                    Constants.GEN_LOCATIONS_MAX_Y
+                )
             )
         }
     }
