@@ -29,7 +29,7 @@ data class PlayerFight(
         fun generatePlayerFights(
             characterSource: Collection<Int>,
             locationSource: Collection<Int>,
-            quantity: Int = Constants.GEN_PLAYER_FIGHTS_QUANTITY_DEFAULT,
+            quantity: Int = Constants.GEN_PLAYER_FIGHTS_QUANTITY,
             randomizer: Random = Random.Default
         ): Collection<PlayerFight> {
             val list = mutableListOf<PlayerFight>()

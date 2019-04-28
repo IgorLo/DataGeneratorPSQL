@@ -1,6 +1,5 @@
 package ru.igorlo.Entities
 
-import jdk.jshell.execution.Util
 import ru.igorlo.Constants
 import ru.igorlo.Utilities
 import kotlin.random.Random
@@ -18,7 +17,7 @@ data class NPC(val name: String, val experience: Int, val description: String, v
     companion object {
         fun generateNpcs(
             locationSource : Collection<Int>,
-            quantity: Int = Constants.GEN_NPCS_QUANTITY_DEFAULT,
+            quantity: Int = Constants.GEN_NPCS_QUANTITY,
             randomizer: Random = Random.Default
         ): Collection<NPC> {
             val list = mutableListOf<NPC>()

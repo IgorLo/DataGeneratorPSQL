@@ -51,8 +51,9 @@ class DBConnector {
             )
         } catch (e: PSQLException) {
             logger.error("Error while executing SELECT!")
+            e.printStackTrace()
+            exitProcess(1)
         }
-        exitProcess(1)
     }
 
     fun insertDataInTable(tableName: String, data: Collection<DBEntity>) {
@@ -110,12 +111,12 @@ class DBConnector {
         return list
     }
 
-    fun cleanTable(tableName: String) {
+    fun cleanTable(tableName: String, isCascade : Boolean = false) {
         logger.info("Cleaning table $tableName")
         try {
             val statement = connection!!.createStatement()
 //            val statementText = StatementBuilder.deleteAll(tableName)
-            val statementText = StatementBuilder.truncateTable(tableName)
+            val statementText = StatementBuilder.truncateTable(tableName, isCascade)
             statement.executeUpdate(statementText)
         } catch (e : PSQLException){
             logger.error("Oops! Cannot clean table $tableName! Something went wrong!")

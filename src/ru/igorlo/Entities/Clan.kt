@@ -14,7 +14,7 @@ data class Clan(val name: String, val rating: Int) : DBEntity {
 
     companion object {
         fun generateClans(
-            quantity: Int = Constants.GEN_CLANS_QUANTITY_DEFAULT,
+            quantity: Int = Constants.GEN_CLANS_QUANTITY,
             randomizer: Random = Random.Default
         ): Collection<Clan> {
             val list = mutableListOf<Clan>()

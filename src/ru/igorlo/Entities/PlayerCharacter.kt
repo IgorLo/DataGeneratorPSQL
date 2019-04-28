@@ -32,7 +32,7 @@ data class PlayerCharacter(
             clanSource: Collection<Int>,
             npcSource: Collection<Int>,
             locationSource: Collection<Int>,
-            quantity: Int = Constants.GEN_CHARACTERS_QUANTITY_DEFAULT,
+            quantity: Int = Constants.GEN_CHARACTERS_QUANTITY,
             randomizer: Random = Random.Default
         ): Collection<PlayerCharacter> {
             val list = mutableListOf<PlayerCharacter>()
@@ -49,10 +49,10 @@ data class PlayerCharacter(
             randomizer: Random = Random.Default
         ): PlayerCharacter {
             return PlayerCharacter(
-                Utilities.generateNpcName(true, randomizer) + "_" + Utilities.generateRandomString(
+                (Utilities.generateNpcName(true, randomizer) + "_" + Utilities.generateRandomString(
                     10,
                     randomizer
-                ).take(15),
+                )).take(15),
                 randomizer.nextInt(Constants.GEN_CHARACTERS_MIN_LEVEL, Constants.GEN_CHARACTERS_MAX_LEVEL),
                 randomizer.nextInt(Constants.GEN_CHARACTERS_MIN_EXP, Constants.GEN_CHARACTERS_MAX_EXP),
                 randomizer.nextInt(Constants.GEN_CHARACTERS_MIN_HP, Constants.GEN_CHARACTERS_MAX_HP),

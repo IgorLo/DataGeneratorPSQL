@@ -14,7 +14,7 @@ object Constants {
                 "вапролджэйцукенгшщзхъйЁЙЦУКЕ" +
                 "НГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ"
 
-    const val GEN_ITEMS_QUANTITY_DEFAULT = 7
+    var GEN_ITEMS_QUANTITY = 50
     const val GEN_ITEMS_MIN_DAMAGE = 1
     const val GEN_ITEMS_MIN_WEIGHT = 1
     const val GEN_ITEMS_MIN_PRICE = 1
@@ -22,29 +22,29 @@ object Constants {
     const val GEN_ITEMS_MAX_WEIGHT = 20
     const val GEN_ITEMS_MAX_PRICE = 5000
 
-    const val GEN_SKILLS_QUANTITY_DEFAULT = 5
+    var GEN_SKILLS_QUANTITY = 60
     const val GEN_SKILLS_MIN_MULT = 0.1
     const val GEN_SKILLS_MAX_MULT = 10.0
 
-    const val GEN_LOCATIONS_QUANTITY_DEFAULT = 4
+    var GEN_LOCATIONS_QUANTITY = 150
     const val GEN_LOCATIONS_MIN_X = 1
     const val GEN_LOCATIONS_MIN_Y = 1
     const val GEN_LOCATIONS_MAX_X = 1000
     const val GEN_LOCATIONS_MAX_Y = 1000
 
-    const val GEN_CITIES_QUANTITY_DEFAULT = 1
+    var GEN_CITIES_QUANTITY = 25
 
-    const val GEN_CLANS_QUANTITY_DEFAULT = 2
+    var GEN_CLANS_QUANTITY = 30
     const val GEN_CLANS_MIN_RATING = 1
     const val GEN_CLANS_MAX_RATING = 100
 
-    const val GEN_NPCS_QUANTITY_DEFAULT = 5
+    var GEN_NPCS_QUANTITY = 300
     const val GEN_NPCS_MIN_EXP = 1
     const val GEN_NPCS_MAX_EXP = 1000
 
-    const val GEN_CONNECTIONS_QUANTITY_DEFAULT = 6
+    var GEN_CONNECTIONS_QUANTITY = 800
 
-    const val GEN_CHARACTERS_QUANTITY_DEFAULT = 8
+    var GEN_CHARACTERS_QUANTITY = 250
     const val GEN_CHARACTERS_MIN_LEVEL = 1
     const val GEN_CHARACTERS_MAX_LEVEL = 80
     const val GEN_CHARACTERS_MIN_EXP = 1
@@ -54,7 +54,7 @@ object Constants {
     const val GEN_CHARACTERS_MIN_MONEY = 0
     const val GEN_CHARACTERS_MAX_MONEY = 10000
 
-    const val GEN_NPC_FIGHTS_QUANTITY_DEFAULT = 15
+    var GEN_NPC_FIGHTS_QUANTITY = 3000
     const val GEN_NPC_FIGHTS_PLAYER_LOSTHP_MIN = 0
     const val GEN_NPC_FIGHTS_PLAYER_LOSTHP_MAX = 100
     const val GEN_NPC_FIGHTS_NPC_LOSTHP_MIN = 0
@@ -62,7 +62,7 @@ object Constants {
     const val GEN_NPC_FIGHTS_GOTMONEY_MIN = 0
     const val GEN_NPC_FIGHTS_GOTMONEY_MAX = 1000
 
-    const val GEN_PLAYER_FIGHTS_QUANTITY_DEFAULT = 10
+    var GEN_PLAYER_FIGHTS_QUANTITY = 1000
 
     const val TEXT_INTRO = "\n\n" +
             "\t----------------------------------------------------------------\n" +

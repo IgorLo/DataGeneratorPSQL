@@ -15,7 +15,7 @@ data class Skill(val name: String, val mult: Double) : DBEntity {
 
     companion object {
         fun generateSkills(
-            quantity: Int = Constants.GEN_SKILLS_QUANTITY_DEFAULT,
+            quantity: Int = Constants.GEN_SKILLS_QUANTITY,
             randomizer: Random = Random.Default
         ): Collection<Skill> {
             val list = mutableListOf<Skill>()

@@ -34,7 +34,7 @@ data class NpcFight(
             npcSource: Collection<Int>,
             characterSource: Collection<Int>,
             locationSource: Collection<Int>,
-            quantity: Int = Constants.GEN_NPC_FIGHTS_QUANTITY_DEFAULT,
+            quantity: Int = Constants.GEN_NPC_FIGHTS_QUANTITY,
             randomizer: Random = Random.Default
         ): Collection<NpcFight> {
             val list = mutableListOf<NpcFight>()

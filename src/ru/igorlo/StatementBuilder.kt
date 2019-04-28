@@ -14,7 +14,7 @@ object StatementBuilder {
         }
         statementText.append("FROM $tableName ")
         if (orderBy.isNotEmpty())
-            statementText.append("ORDER BY $orderBy")
+            statementText.append("ORDER BY $orderBy ")
         if (limit > 0) {
             statementText.append("LIMIT $limit")
         }
@@ -32,8 +32,13 @@ object StatementBuilder {
         return ("DELETE FROM $tableName WHERE id > 0;")
     }
 
-    fun truncateTable(tableName: String): String? {
-        return ("TRUNCATE $tableName;")
+    fun truncateTable(tableName: String, isCascade : Boolean = false): String? {
+        val statementText = StringBuilder()
+        statementText.append("TRUNCATE $tableName")
+        if (isCascade)
+            statementText.append(" CASCADE")
+        statementText.append(";")
+        return statementText.toString()
     }
 
     fun setFieldToRandomId(tableName: String, tableFrom: String, fieldFk: String, whereCondition : String = "") : String {

@@ -39,15 +39,34 @@ object Utilities {
         logger.info("Getting INT from user")
         var parameter: Int? = null
         while (parameter == null) {
-            print("$text ")
+            println("$text (int) : ")
             try {
                 parameter = conScanner.nextInt()
             } catch (e: InputMismatchException) {
-                print("Неприёмлимое значение\n")
+                println("Wrong format")
                 conScanner = Scanner(System.`in`)
             }
         }
         return parameter
+    }
+
+    fun getUserBooleanParameter(text: String): Boolean {
+        while (true) {
+            println("$text [y/n] : ")
+            val string = conScanner.next().toLowerCase()
+            if (string == "y" || string == "yes")
+                return true
+            else if (string == "n" || string == "no")
+                return false
+            println("Wrong format")
+        }
+    }
+
+    fun getUserStringParameter(text: String): String {
+        println("$text (String) : ")
+        val str = conScanner.next()
+        println()
+        return str
     }
 
     fun generateRandomString(lenght: Int, randomizer: Random = Random.Default): String {

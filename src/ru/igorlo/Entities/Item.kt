@@ -17,7 +17,7 @@ data class Item(val name: String, val damage: Int, val weight: Int, val price: I
 
     companion object {
         fun generateItems(
-            quantity: Int = Constants.GEN_ITEMS_QUANTITY_DEFAULT,
+            quantity: Int = Constants.GEN_ITEMS_QUANTITY,
             randomizer: Random = Random.Default
         ): Collection<Item> {
             val list = mutableListOf<Item>()

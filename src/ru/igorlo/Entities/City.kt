@@ -13,19 +13,21 @@ data class City(val name : String) : DBEntity {
 
     companion object {
         fun generateCities(
-            quantity: Int = Constants.GEN_CITIES_QUANTITY_DEFAULT,
+            quantity: Int = Constants.GEN_CITIES_QUANTITY,
             randomizer: Random = Random.Default
         ): Collection<City> {
             val list = mutableListOf<City>()
             for (i in 0..quantity) {
-                list.add(generateCity(randomizer))
+                val city = generateCity(randomizer)
+                if (!list.contains(city))
+                    list.add(city)
             }
             return list
         }
 
         private fun generateCity(randomizer: Random = Random.Default): City {
             return City(
-                Utilities.generateCityName(randomizer)
+                (Utilities.generateCityName(randomizer) + "_" + Utilities.generateRandomString(20, randomizer)).take(20)
             )
         }
     }

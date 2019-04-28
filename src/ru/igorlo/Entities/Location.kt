@@ -15,7 +15,7 @@ data class Location(val name: String, val x_coord: Int, val y_coord: Int) : DBEn
 
     companion object {
         fun generateLocations(
-            quantity: Int = Constants.GEN_LOCATIONS_QUANTITY_DEFAULT,
+            quantity: Int = Constants.GEN_LOCATIONS_QUANTITY,
             randomizer: Random = Random.Default
         ): Collection<Location> {
             val list = mutableListOf<Location>()
