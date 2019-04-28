@@ -27,7 +27,7 @@ data class Clan(val name: String, val rating: Int) : DBEntity {
         private fun generateClan(randomizer: Random = Random.Default): Clan {
             return Clan(
                 Utilities.generateClanName(randomizer),
-                Constants.GEN_CLANS_MIN_RATING + randomizer.nextInt(Constants.GEN_CLANS_MAX_RATING)
+                randomizer.nextInt(Constants.GEN_CLANS_MIN_RATING, Constants.GEN_CLANS_MAX_RATING)
             )
         }
     }

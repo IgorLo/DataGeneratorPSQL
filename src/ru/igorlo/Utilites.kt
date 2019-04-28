@@ -65,16 +65,19 @@ object Utilities {
 
         //firstname
         stringBuilder
-            .append(Constants.NAMES_FIRSTNAME_FIRSTHALF.random())
-            .append(Constants.NAMES_FIRSTNAME_SECONDHALF.random())
+            .append(Constants.NAMES_FIRSTNAME_FIRSTHALF.random(randomizer))
+            .append(Constants.NAMES_FIRSTNAME_SECONDHALF.random(randomizer))
+
+        if (shortName)
+            return stringBuilder.toString()
 
         //secondname
         if (randomizer.nextDouble() < 0.6)
-            stringBuilder.append(" ").append(Constants.NAMES_SECOND_NAME.random())
+            stringBuilder.append(" ").append(Constants.NAMES_SECOND_NAME.random(randomizer))
 
         //postfix
         if (randomizer.nextDouble() < 0.6)
-            stringBuilder.append(" ").append(Constants.NAMES_AFTER_NAME.random())
+            stringBuilder.append(" ").append(Constants.NAMES_AFTER_NAME.random(randomizer))
 
         return stringBuilder.toString()
     }

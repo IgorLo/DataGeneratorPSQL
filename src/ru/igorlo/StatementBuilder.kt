@@ -27,5 +27,13 @@ class StatementBuilder {
             statementText.append("INSERT INTO $tableName (" + fields.joinToString() + ") VALUES (?" + ",?".repeat(fields.size - 1) + ")")
             return statementText.toString()
         }
+
+        fun deleteAll(tableName: String): String {
+            return ("DELETE FROM $tableName WHERE id > 0;")
+        }
+
+        fun truncateTable(tableName: String): String? {
+            return ("TRUNCATE $tableName;")
+        }
     }
 }

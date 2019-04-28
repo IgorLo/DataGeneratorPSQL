@@ -30,9 +30,9 @@ data class Item(val name: String, val damage: Int, val weight: Int, val price: I
         fun generateItem(randomizer: Random = Random.Default): Item {
             return Item(
                 Utilities.generateItemName(randomizer),
-                Constants.GEN_ITEMS_MIN_DAMAGE + randomizer.nextInt(Constants.GEN_ITEMS_MAX_DAMAGE),
-                Constants.GEN_ITEMS_MIN_WEIGHT + randomizer.nextInt(Constants.GEN_ITEMS_MAX_WEIGHT),
-                Constants.GEN_ITEMS_MIN_PRICE + randomizer.nextInt(Constants.GEN_ITEMS_MAX_PRICE)
+                randomizer.nextInt(Constants.GEN_ITEMS_MIN_DAMAGE, Constants.GEN_ITEMS_MAX_DAMAGE),
+                randomizer.nextInt(Constants.GEN_ITEMS_MIN_WEIGHT, Constants.GEN_ITEMS_MAX_WEIGHT),
+                randomizer.nextInt(Constants.GEN_ITEMS_MIN_PRICE, Constants.GEN_ITEMS_MAX_PRICE)
             )
         }
     }

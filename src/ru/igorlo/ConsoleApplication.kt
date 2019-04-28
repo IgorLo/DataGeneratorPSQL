@@ -2,6 +2,8 @@ package ru.igorlo
 
 import ru.igorlo.Entities.City
 import ru.igorlo.Entities.Clan
+import ru.igorlo.Entities.MapConnection
+import ru.igorlo.Entities.NPC
 import ru.igorlo.Utilities.printResultSet
 import java.util.*
 
@@ -41,7 +43,21 @@ fun main(args: Array<String>) {
 //    connector.insertDataInTable("clans", Clan.generateClans(10))
 //    printResultSet(connector.getResultSetOfSelect("clans"), 20)
 
+//    printResultSet(connector.getResultSetOfSelect("npcs"), 20)
+//    connector.insertDataInTable("npcs", NPC.generateNpcs(10))
+//    printResultSet(connector.getResultSetOfSelect("npcs"), 20)
 
 
+    printResultSet(connector.getResultSetOfSelect("connections"), 20)
+    connector.cleanTable("connections")
+    printResultSet(connector.getResultSetOfSelect("connections"), 20)
+    connector.insertDataInTable(
+        "connections",
+        MapConnection.generateConnections(
+            connector.getListOfIds("locations"),
+            100
+        )
+    )
+    printResultSet(connector.getResultSetOfSelect("connections"), 20)
 
 }

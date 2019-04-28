@@ -18,25 +18,31 @@ object Constants {
     const val GEN_ITEMS_MIN_DAMAGE = 1
     const val GEN_ITEMS_MIN_WEIGHT = 1
     const val GEN_ITEMS_MIN_PRICE = 1
-    const val GEN_ITEMS_MAX_DAMAGE = 50 - GEN_ITEMS_MIN_DAMAGE
-    const val GEN_ITEMS_MAX_WEIGHT = 20 - GEN_ITEMS_MIN_WEIGHT
-    const val GEN_ITEMS_MAX_PRICE = 5000 - GEN_ITEMS_MIN_PRICE
+    const val GEN_ITEMS_MAX_DAMAGE = 50
+    const val GEN_ITEMS_MAX_WEIGHT = 20
+    const val GEN_ITEMS_MAX_PRICE = 5000
 
     const val GEN_SKILLS_QUANTITY_DEFAULT = 5
     const val GEN_SKILLS_MIN_MULT = 0.1
-    const val GEN_SKILLS_MAX_MULT = 10.0 - GEN_SKILLS_MIN_MULT
+    const val GEN_SKILLS_MAX_MULT = 10.0
 
     const val GEN_LOCATIONS_QUANTITY_DEFAULT = 4
     const val GEN_LOCATIONS_MIN_X = 1
     const val GEN_LOCATIONS_MIN_Y = 1
-    const val GEN_LOCATIONS_MAX_X = 1000 - GEN_LOCATIONS_MIN_X
-    const val GEN_LOCATIONS_MAX_Y = 1000 - GEN_LOCATIONS_MIN_Y
+    const val GEN_LOCATIONS_MAX_X = 1000
+    const val GEN_LOCATIONS_MAX_Y = 1000
 
     const val GEN_CITIES_QUANTITY_DEFAULT = 1
 
     const val GEN_CLANS_QUANTITY_DEFAULT = 2
     const val GEN_CLANS_MIN_RATING = 1
-    const val GEN_CLANS_MAX_RATING = 100 - GEN_CLANS_MIN_RATING
+    const val GEN_CLANS_MAX_RATING = 100
+
+    const val GEN_NPCS_QUANTITY_DEFAULT = 5
+    const val GEN_NPCS_MIN_EXP = 1
+    const val GEN_NPCS_MAX_EXP = 1000
+
+    const val GEN_CONNECTIONS_QUANTITY_DEFAULT = 6
 
     const val TEXT_INTRO = "\n\n" +
             "\t----------------------------------------------------------------\n" +

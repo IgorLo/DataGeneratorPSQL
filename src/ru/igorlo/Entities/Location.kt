@@ -28,8 +28,8 @@ data class Location(val name: String, val x_coord: Int, val y_coord: Int) : DBEn
         private fun generateLocation(randomizer: Random = Random.Default): Location {
             return Location(
                 Utilities.generateLocationName(randomizer),
-                Constants.GEN_LOCATIONS_MIN_X + randomizer.nextInt(Constants.GEN_LOCATIONS_MAX_X),
-                Constants.GEN_LOCATIONS_MIN_Y + randomizer.nextInt(Constants.GEN_LOCATIONS_MAX_Y)
+                randomizer.nextInt(Constants.GEN_LOCATIONS_MIN_X, Constants.GEN_LOCATIONS_MAX_X),
+                randomizer.nextInt(Constants.GEN_LOCATIONS_MIN_Y, Constants.GEN_LOCATIONS_MAX_Y)
             )
         }
     }

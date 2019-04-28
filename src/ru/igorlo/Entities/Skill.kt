@@ -28,7 +28,7 @@ data class Skill(val name: String, val mult: Double) : DBEntity {
         private fun generateSkill(randomizer: Random = Random.Default): Skill {
             return Skill(
                 Utilities.generateSkillName(),
-                Constants.GEN_SKILLS_MIN_MULT + randomizer.nextDouble(Constants.GEN_SKILLS_MAX_MULT)
+                randomizer.nextDouble(Constants.GEN_SKILLS_MIN_MULT, Constants.GEN_SKILLS_MAX_MULT)
             )
         }
     }

@@ -97,4 +97,30 @@ class DBConnector {
             exitProcess(1)
         }
     }
+
+    fun getListOfIds(tableName: String): Collection<Int> {
+        logger.info("Getting IDs of table $tableName")
+        val resultSet = getResultSetOfSelect(tableName, 0, "id")
+        val list = mutableListOf<Int>()
+        while (resultSet.next()) {
+            list.add(resultSet.getInt("id"))
+        }
+        logger.info("Getting IDs - Success")
+        return list
+    }
+
+    fun cleanTable(tableName: String) {
+        logger.info("Cleaning table $tableName")
+        try {
+            val statement = connection!!.createStatement()
+//            val statementText = StatementBuilder.deleteAll(tableName)
+            val statementText = StatementBuilder.truncateTable(tableName)
+            statement.executeUpdate(statementText)
+        } catch (e : PSQLException){
+            logger.error("Oops! Cannot clean table $tableName! Something went wrong!")
+            e.printStackTrace()
+            exitProcess(1)
+        }
+        logger.info("Cleaned table successfully!")
+    }
 }
