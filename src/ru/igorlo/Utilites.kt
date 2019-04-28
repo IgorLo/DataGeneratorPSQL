@@ -1,6 +1,7 @@
 package ru.igorlo
 
 import org.slf4j.LoggerFactory
+import ru.igorlo.GenerationApplication.conScanner
 import java.lang.StringBuilder
 import java.sql.ResultSet
 import java.util.*
