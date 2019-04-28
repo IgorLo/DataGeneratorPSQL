@@ -44,6 +44,24 @@ object Constants {
 
     const val GEN_CONNECTIONS_QUANTITY_DEFAULT = 6
 
+    const val GEN_CHARACTERS_QUANTITY_DEFAULT = 8
+    const val GEN_CHARACTERS_MIN_LEVEL = 1
+    const val GEN_CHARACTERS_MAX_LEVEL = 80
+    const val GEN_CHARACTERS_MIN_EXP = 1
+    const val GEN_CHARACTERS_MAX_EXP = 1000
+    const val GEN_CHARACTERS_MIN_HP = 20
+    const val GEN_CHARACTERS_MAX_HP = 200
+    const val GEN_CHARACTERS_MIN_MONEY = 0
+    const val GEN_CHARACTERS_MAX_MONEY = 10000
+
+    const val GEN_NPC_FIGHTS_QUANTITY_DEFAULT = 15
+    const val GEN_NPC_FIGHTS_PLAYER_LOSTHP_MIN = 0
+    const val GEN_NPC_FIGHTS_PLAYER_LOSTHP_MAX = 100
+    const val GEN_NPC_FIGHTS_NPC_LOSTHP_MIN = 0
+    const val GEN_NPC_FIGHTS_NPC_LOSTHP_MAX = 100
+    const val GEN_NPC_FIGHTS_GOTMONEY_MIN = 0
+    const val GEN_NPC_FIGHTS_GOTMONEY_MAX = 1000
+
     const val TEXT_INTRO = "\n\n" +
             "\t----------------------------------------------------------------\n" +
             "\tWelcome to the data generator for Postgres DB. This program will\n" +

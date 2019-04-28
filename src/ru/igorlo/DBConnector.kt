@@ -31,7 +31,7 @@ class DBConnector {
         connection = DriverManager.getConnection("jdbc:postgresql://$host:$port/$db_name", db_user, db_pass)
     }
 
-    fun getResultSetOfSelect(tableName: String, limit: Int = 0, vararg fields: String): ResultSet {
+    fun getResultSetOfSelect(tableName: String, limit: Int = 0, orderBy : String = "", vararg fields: String): ResultSet {
         logger.info("Executing SELECT from table $tableName by fields")
         if (connection == null) {
             logger.error("Cannot execute SELECT, because there's no connection to DB")
@@ -45,6 +45,7 @@ class DBConnector {
                 StatementBuilder.selectFieldsFromTable(
                     tableName,
                     limit,
+                    orderBy,
                     *fields
                 )
             )
@@ -123,4 +124,32 @@ class DBConnector {
         }
         logger.info("Cleaned table successfully!")
     }
+
+    fun setFieldToRandomId(tableName: String, tableFrom: String, fieldFk: String, whereCondition : String = "") {
+        logger.info("Setting field $fieldFk in table $tableName to random id from $tableFrom")
+        try {
+            val statement = connection!!.createStatement()
+            val statementText = StatementBuilder.setFieldToRandomId(tableName, tableFrom, fieldFk, whereCondition)
+            statement.executeUpdate(statementText)
+        } catch (e : PSQLException){
+            logger.error("Oops! Cannot do that! Something went wrong!")
+            e.printStackTrace()
+            exitProcess(1)
+        }
+    }
+
+    fun addLinks(table: String, fieldFirst: String, fieldSecond: String, tableFromFirst: String, tableFromSecond: String, quantity: Int) {
+        logger.info("Adding linking rows for $tableFromFirst and $tableFromSecond in table $table")
+        try {
+            val statementText = StatementBuilder.addLinks(table, fieldFirst, fieldSecond, tableFromFirst, tableFromSecond, quantity)
+            val statement = connection!!.createStatement()
+            statement.executeUpdate(statementText)
+        } catch (e : PSQLException){
+            logger.error("Oops! Cannot do that! Something went wrong!")
+            e.printStackTrace()
+            exitProcess(1)
+        }
+        logger.info("Success!")
+    }
+
 }
