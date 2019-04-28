@@ -62,6 +62,8 @@ object Constants {
     const val GEN_NPC_FIGHTS_GOTMONEY_MIN = 0
     const val GEN_NPC_FIGHTS_GOTMONEY_MAX = 1000
 
+    const val GEN_PLAYER_FIGHTS_QUANTITY_DEFAULT = 10
+
     const val TEXT_INTRO = "\n\n" +
             "\t----------------------------------------------------------------\n" +
             "\tWelcome to the data generator for Postgres DB. This program will\n" +

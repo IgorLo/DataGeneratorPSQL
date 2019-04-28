@@ -93,15 +93,27 @@ fun main(args: Array<String>) {
 //    connector.addLinks("link_npc_skill", "fk_npc", "fk_skill", "npcs", "skills", 200)
 //    printResultSet(connector.getResultSetOfSelect("link_npc_skill", orderBy = "fk_npc"))
 
-    printResultSet(connector.getResultSetOfSelect("npc_fights", orderBy = "kill_time"), 20)
-    connector.cleanTable("npc_fights")
+//    printResultSet(connector.getResultSetOfSelect("npc_fights", orderBy = "kill_time"), 20)
+//    connector.cleanTable("npc_fights")
+//    connector.insertDataInTable(
+//        "npc_fights", NpcFight.generateNpcFights(
+//            connector.getListOfIds("npcs"),
+//            connector.getListOfIds("characters"),
+//            connector.getListOfIds("locations"),
+//            1000
+//        )
+//    )
+//    printResultSet(connector.getResultSetOfSelect("npc_fights", orderBy = "kill_time"), 20)
+
+    printResultSet(connector.getResultSetOfSelect("player_fight", orderBy = "fight_time"), 20)
+    connector.cleanTable("player_fight")
     connector.insertDataInTable(
-        "npc_fights", NpcFight.generateNpcFights(
-            connector.getListOfIds("npcs"),
+        "player_fight", PlayerFight.generatePlayerFights(
             connector.getListOfIds("characters"),
             connector.getListOfIds("locations"),
             1000
         )
     )
-    printResultSet(connector.getResultSetOfSelect("npc_fights", orderBy = "kill_time"), 20)
+    printResultSet(connector.getResultSetOfSelect("player_fight", orderBy = "fight_time"), 20)
+
 }
