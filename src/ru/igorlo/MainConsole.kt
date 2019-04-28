@@ -6,6 +6,10 @@ import java.util.*
 import kotlin.system.exitProcess
 
 fun main() {
+
+    GraphVisualiser.main()
+    exitProcess(1)
+
     val scanner = Scanner(System.`in`)
     while (true) {
         println("Input a command: ")
