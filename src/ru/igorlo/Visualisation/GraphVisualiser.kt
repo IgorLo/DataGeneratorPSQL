@@ -4,9 +4,7 @@ import org.graphstream.graph.Edge
 import org.graphstream.graph.Graph
 import org.graphstream.graph.Node
 import org.graphstream.graph.implementations.SingleGraph
-import ru.igorlo.Generation.DBConnector
-import org.graphstream.ui.view.Viewer
-import java.awt.Color
+import ru.igorlo.generation.DBConnector
 import kotlin.random.Random
 
 

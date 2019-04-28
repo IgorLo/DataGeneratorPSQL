@@ -1,8 +1,8 @@
 package ru.igorlo
 
 import org.slf4j.LoggerFactory
-import ru.igorlo.Generation.Constants
-import ru.igorlo.Generation.GenerationApplication.conScanner
+import ru.igorlo.generation.Constants
+import ru.igorlo.generation.GenerationApplication.conScanner
 import java.lang.StringBuilder
 import java.sql.ResultSet
 import java.util.*

@@ -1,4 +1,4 @@
-package ru.igorlo.Generation
+package ru.igorlo.generation
 
 object Constants {
     const val DB_NAME_DEFAULT = "rpg_game"

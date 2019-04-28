@@ -1,8 +1,8 @@
-package ru.igorlo.Generation
+package ru.igorlo.generation
 
 import org.postgresql.util.PSQLException
 import org.slf4j.LoggerFactory
-import ru.igorlo.Generation.Entities.DBEntity
+import ru.igorlo.generation.entities.DBEntity
 import java.sql.*
 import kotlin.system.exitProcess
 

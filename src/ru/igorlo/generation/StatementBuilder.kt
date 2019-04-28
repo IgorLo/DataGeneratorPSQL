@@ -1,4 +1,4 @@
-package ru.igorlo.Generation
+package ru.igorlo.generation
 
 import java.lang.StringBuilder
 

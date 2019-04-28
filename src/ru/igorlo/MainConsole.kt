@@ -1,14 +1,11 @@
 package ru.igorlo
 
-import ru.igorlo.Generation.GenerationApplication
+import ru.igorlo.generation.GenerationApplication
 import ru.igorlo.Visualisation.GraphVisualiser
 import java.util.*
 import kotlin.system.exitProcess
 
 fun main() {
-
-    GraphVisualiser.main()
-    exitProcess(1)
 
     val scanner = Scanner(System.`in`)
     while (true) {
@@ -18,8 +15,18 @@ fun main() {
             "generate" -> GenerationApplication.main()
             "graph" -> GraphVisualiser.main()
             "exit" -> exitProcess(0)
+            "help" -> printHelp()
             "echo" -> println(scanner.next())
             "hello" -> println("well... Hello")
         }
     }
+}
+
+fun printHelp() {
+    println(
+        "Avalable commands:\n" +
+                "graph\n" +
+                "generate\n" +
+                "exit\n"
+    )
 }

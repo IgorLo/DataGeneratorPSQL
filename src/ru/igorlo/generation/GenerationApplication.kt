@@ -1,6 +1,6 @@
-package ru.igorlo.Generation
+package ru.igorlo.generation
 
-import ru.igorlo.Generation.Entities.*
+import ru.igorlo.generation.entities.*
 import ru.igorlo.Utilities
 import ru.igorlo.Utilities.getUserIntParameter
 import ru.igorlo.Utilities.printResultSet
@@ -165,8 +165,8 @@ object GenerationApplication {
 
         val timeSeconds : Double = (System.currentTimeMillis() - startTime).toDouble() / 1000
 
-        println("Generation took: $timeSeconds seconds")
-        println("Generation ended successfully!")
+        println("generation took: $timeSeconds seconds")
+        println("generation ended successfully!")
         println("Congratulations!")
 
     }
