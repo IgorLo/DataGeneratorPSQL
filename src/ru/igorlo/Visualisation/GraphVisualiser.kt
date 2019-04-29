@@ -16,6 +16,17 @@ object GraphVisualiser {
 
         connection.newConnection()
 
+        val graph = loadMapFromDB()
+//        val graph = generateMap(3000)
+
+        val viewer = graph.display(true)
+        val view = viewer.defaultView
+        view.resizeFrame(800, 600)
+        Thread.sleep(10000000)
+
+    }
+
+    private fun loadMapFromDB(): Graph {
         val nodes = mutableListOf<GLocation>()
         val edges = mutableListOf<GRoad>()
 
@@ -47,22 +58,18 @@ object GraphVisualiser {
         graph.addAttribute("ui.antialias")
         graph.addAttribute(
             "ui.stylesheet", "graph {" +
-                    "fill-color: black;" +
+                    "fill-color: white;" +
                     "}" +
                     "node {" +
-                    "text-color: white;" +
-                    "text-size: 18px;" +
+                    "text-color: black;" +
+                    "text-size: 15px;" +
                     "}"
         )
-
-        val viewer = graph.display(false)
-        val view = viewer.defaultView
-        view.resizeFrame(800, 600)
 
         for (node in nodes) {
             val gnode = graph.addNode<Node>(node.id.toString())
             gnode.addAttribute("ui.label", node.name)
-            gnode.setAttribute("xyz", node.x_coord, node.y_coord, 0)
+//            gnode.setAttribute("xyz", node.x_coord, node.y_coord, 0)
             gnode.addAttribute(
                 "ui.style",
                 "fill-color: rgb(${Random.nextInt(255)},${Random.nextInt(255)},${Random.nextInt(255)});"
@@ -77,7 +84,8 @@ object GraphVisualiser {
             )
         }
 
-        Thread.sleep(10000000)
-
+        return graph
     }
+
+
 }

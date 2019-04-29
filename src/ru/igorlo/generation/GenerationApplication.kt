@@ -1,10 +1,17 @@
 package ru.igorlo.generation
 
+import org.graphstream.algorithm.generator.LobsterGenerator
+import org.graphstream.graph.Edge
+import org.graphstream.graph.Graph
+import org.graphstream.graph.Node
+import org.graphstream.graph.implementations.SingleGraph
 import ru.igorlo.generation.entities.*
 import ru.igorlo.Utilities
 import ru.igorlo.Utilities.getUserIntParameter
 import ru.igorlo.Utilities.printResultSet
+import ru.igorlo.Visualisation.GraphWorks
 import java.util.*
+import kotlin.collections.HashMap
 
 object GenerationApplication {
 
@@ -20,7 +27,28 @@ object GenerationApplication {
         val customUser: String
         val customPass: String
 
-        val shouldCleanUp = Utilities.getUserBooleanParameter("You want to clean up present data?")
+//        val shouldCleanUp = Utilities.getUserBooleanParameter("You want to clean up present data?")
+        val shouldCleanUp = true
+        val proceed = Utilities.getUserBooleanParameter("Application will clean up current data. Proceed?")
+        if (!proceed)
+            return
+
+        val mapType =
+            getUserIntParameter(
+                "Map generation type\n" +
+                        "(1 (or any other) - Random\n" +
+                        "2 - Lobster\n" +
+                        "3 - Barabasi-Albert\n" +
+//                        "4 - Chvatal\n" +
+//                        "5 - Dorogovtsev-Mendes\n" +
+//                        "6 - Flower Snark\n" +
+//                        "7 - Grid\n" +
+//                        "8 - Incomplete Grid\n" +
+//                        "9 - Petersen graph\n" +
+//                        "10 - Watts-Strogatz" +
+                        ")"
+            )
+
         val customConnectionParams =
             Utilities.getUserBooleanParameter("Want to customize connection parameters? (No for default)")
         if (customConnectionParams) {
@@ -80,10 +108,12 @@ object GenerationApplication {
         printResultSet(connector.getResultSetOfSelect("skills", limit))
         println("-".repeat(20))
 
-        println("Generating locations")
-        connector.insertDataInTable("locations", Location.generateLocations())
-        printResultSet(connector.getResultSetOfSelect("locations", limit))
-        println("-".repeat(20))
+        when (mapType) {
+            1 -> generateMapRandom(limit)
+            2, 3, 4, 5, 6, 7, 8, 9, 10 -> generateCustomMap(limit, mapType)
+            else -> generateMapRandom(limit)
+        }
+
 
         println("Generating cities")
         connector.insertDataInTable("cities", City.generateCities())
@@ -96,19 +126,12 @@ object GenerationApplication {
         println("-".repeat(20))
 
         println("Generating npcs")
-        connector.insertDataInTable("npcs", NPC.generateNpcs(
-            connector.getListOfIds("locations"), 10))
-        printResultSet(connector.getResultSetOfSelect("npcs", limit), 20)
-        println("-".repeat(20))
-
-        println("Generating connections")
         connector.insertDataInTable(
-            "connections",
-            MapConnection.generateConnections(
-                connector.getListOfIds("locations")
+            "npcs", NPC.generateNpcs(
+                connector.getListOfIds("locations"), 10
             )
         )
-        printResultSet(connector.getResultSetOfSelect("connections", limit), 20)
+        printResultSet(connector.getResultSetOfSelect("npcs", limit), 20)
         println("-".repeat(20))
 
         println("Generating characters")
@@ -163,12 +186,87 @@ object GenerationApplication {
         printResultSet(connector.getResultSetOfSelect("player_fight", limit, orderBy = "fight_time"), 20)
         println("-".repeat(20))
 
-        val timeSeconds : Double = (System.currentTimeMillis() - startTime).toDouble() / 1000
+        val timeSeconds: Double = (System.currentTimeMillis() - startTime).toDouble() / 1000
 
         println("generation took: $timeSeconds seconds")
         println("generation ended successfully!")
-        println("Congratulations!")
+        println("~~~Congratulations!~~~\n\n")
 
+    }
+
+    private fun generateCustomMap(limit: Int = 0, mapType: Int) {
+
+        val graph = when (mapType){
+            2 -> GraphWorks.generateLobsterMap(Constants.GEN_LOCATIONS_QUANTITY)
+            3 -> GraphWorks.generateBarabasiAlbertMap(Constants.GEN_LOCATIONS_QUANTITY)
+//            4 -> GraphWorks.generateChvatalMap(Constants.GEN_LOCATIONS_QUANTITY)
+//            5 -> GraphWorks.generateDorogovtsevMendesMap(Constants.GEN_LOCATIONS_QUANTITY)
+//            6 -> GraphWorks.generateFlowerSnarkMap(Constants.GEN_LOCATIONS_QUANTITY)
+//            7 -> GraphWorks.generateGridMap(Constants.GEN_LOCATIONS_QUANTITY)
+//            8 -> GraphWorks.generateIncompleteGridMap(Constants.GEN_LOCATIONS_QUANTITY)
+//            9 -> GraphWorks.generatePetersenMap(Constants.GEN_LOCATIONS_QUANTITY)
+//            10 -> GraphWorks.generateWattsStrogatzMap(Constants.GEN_LOCATIONS_QUANTITY)
+            else -> GraphWorks.generateLobsterMap(Constants.GEN_LOCATIONS_QUANTITY)
+        }
+
+        val locationMap = HashMap<Node, Int>()
+        val locationList = mutableListOf<Location>()
+        val connectionList = mutableListOf<MapConnection>()
+
+        var idCounter = 1
+        for (node in graph.getNodeSet<Node>()) {
+            locationMap[node] = idCounter
+            locationList.add(
+                Location(
+                    idCounter,
+                    Utilities.generateLocationName(),
+                    1,
+                    1
+                )
+            )
+            idCounter++
+        }
+        for (edge in graph.getEdgeSet<Edge>()) {
+            connectionList.add(
+                MapConnection(
+                    locationMap[edge.getNode0<Node>()]!!,
+                    locationMap[edge.getNode1<Node>()]!!
+                )
+            )
+        }
+
+        println("Generating locations")
+        connector.insertDataInTable(
+            "locations",
+            locationList
+        )
+        printResultSet(connector.getResultSetOfSelect("locations", limit), 20)
+        println("-".repeat(20))
+
+        println("Generating connections")
+        connector.insertDataInTable(
+            "connections",
+            connectionList
+        )
+        printResultSet(connector.getResultSetOfSelect("connections", limit), 20)
+        println("-".repeat(20))
+    }
+
+    private fun generateMapRandom(limit: Int = 0) {
+        println("Generating locations")
+        connector.insertDataInTable("locations", Location.generateLocations())
+        printResultSet(connector.getResultSetOfSelect("locations", limit))
+        println("-".repeat(20))
+
+        println("Generating connections")
+        connector.insertDataInTable(
+            "connections",
+            MapConnection.generateConnections(
+                connector.getListOfIds("locations")
+            )
+        )
+        printResultSet(connector.getResultSetOfSelect("connections", limit), 20)
+        println("-".repeat(20))
     }
 
 }
