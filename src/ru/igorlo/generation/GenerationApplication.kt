@@ -39,13 +39,13 @@ object GenerationApplication {
                         "(1 (or any other) - Random\n" +
                         "2 - Lobster\n" +
                         "3 - Barabasi-Albert\n" +
-//                        "4 - Chvatal\n" +
-//                        "5 - Dorogovtsev-Mendes\n" +
-//                        "6 - Flower Snark\n" +
-//                        "7 - Grid\n" +
-//                        "8 - Incomplete Grid\n" +
-//                        "9 - Petersen graph\n" +
-//                        "10 - Watts-Strogatz" +
+                        "4 - Chvatal\n" +
+                        "5 - Dorogovtsev-Mendes\n" +
+                        "6 - Flower Snark\n" +
+                        "7 - Grid\n" +
+                        "8 - Incomplete Grid\n" +
+                        "9 - Petersen graph\n" +
+                        "10 - Watts-Strogatz" +
                         ")"
             )
 
@@ -199,13 +199,13 @@ object GenerationApplication {
         val graph = when (mapType){
             2 -> GraphWorks.generateLobsterMap(Constants.GEN_LOCATIONS_QUANTITY)
             3 -> GraphWorks.generateBarabasiAlbertMap(Constants.GEN_LOCATIONS_QUANTITY)
-//            4 -> GraphWorks.generateChvatalMap(Constants.GEN_LOCATIONS_QUANTITY)
-//            5 -> GraphWorks.generateDorogovtsevMendesMap(Constants.GEN_LOCATIONS_QUANTITY)
-//            6 -> GraphWorks.generateFlowerSnarkMap(Constants.GEN_LOCATIONS_QUANTITY)
-//            7 -> GraphWorks.generateGridMap(Constants.GEN_LOCATIONS_QUANTITY)
-//            8 -> GraphWorks.generateIncompleteGridMap(Constants.GEN_LOCATIONS_QUANTITY)
-//            9 -> GraphWorks.generatePetersenMap(Constants.GEN_LOCATIONS_QUANTITY)
-//            10 -> GraphWorks.generateWattsStrogatzMap(Constants.GEN_LOCATIONS_QUANTITY)
+            4 -> GraphWorks.generateChvatalMap(Constants.GEN_LOCATIONS_QUANTITY)
+            5 -> GraphWorks.generateDorogovtsevMendesMap(Constants.GEN_LOCATIONS_QUANTITY)
+            6 -> GraphWorks.generateFlowerSnarkMap(Constants.GEN_LOCATIONS_QUANTITY)
+            7 -> GraphWorks.generateGridMap(Constants.GEN_LOCATIONS_QUANTITY)
+            8 -> GraphWorks.generateIncompleteGridMap(Constants.GEN_LOCATIONS_QUANTITY)
+            9 -> GraphWorks.generatePetersenMap(Constants.GEN_LOCATIONS_QUANTITY)
+            10 -> GraphWorks.generateWattsStrogatzMap(Constants.GEN_LOCATIONS_QUANTITY)
             else -> GraphWorks.generateLobsterMap(Constants.GEN_LOCATIONS_QUANTITY)
         }
 
@@ -216,21 +216,23 @@ object GenerationApplication {
         var idCounter = 1
         for (node in graph.getNodeSet<Node>()) {
             locationMap[node] = idCounter
-            locationList.add(
-                Location(
-                    idCounter,
-                    Utilities.generateLocationName(),
-                    1,
-                    1
-                )
+            val location = Location(
+                idCounter,
+                Utilities.generateLocationName(),
+                1,
+                1
             )
+            print("$idCounter - ${location.id}, ${location.name}")
+            locationList.add(location)
             idCounter++
         }
         for (edge in graph.getEdgeSet<Edge>()) {
+            val firstNode = edge.getSourceNode<Node>()
+            val secondNode = edge.getTargetNode<Node>()
             connectionList.add(
                 MapConnection(
-                    locationMap[edge.getNode0<Node>()]!!,
-                    locationMap[edge.getNode1<Node>()]!!
+                    locationMap[firstNode]!!,
+                    locationMap[secondNode]!!
                 )
             )
         }
@@ -242,6 +244,9 @@ object GenerationApplication {
         )
         printResultSet(connector.getResultSetOfSelect("locations", limit), 20)
         println("-".repeat(20))
+
+        println("Waiting to make sure, that locations are ok")
+        Thread.sleep(1000)
 
         println("Generating connections")
         connector.insertDataInTable(

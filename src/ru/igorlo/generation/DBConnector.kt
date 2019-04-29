@@ -31,7 +31,12 @@ class DBConnector {
         connection = DriverManager.getConnection("jdbc:postgresql://$host:$port/$db_name", db_user, db_pass)
     }
 
-    fun getResultSetOfSelect(tableName: String, limit: Int = 0, orderBy : String = "", vararg fields: String): ResultSet {
+    fun getResultSetOfSelect(
+        tableName: String,
+        limit: Int = 0,
+        orderBy: String = "",
+        vararg fields: String
+    ): ResultSet {
         logger.info("Executing SELECT from table $tableName by fields")
         if (connection == null) {
             logger.error("Cannot execute SELECT, because there's no connection to DB")
@@ -58,7 +63,7 @@ class DBConnector {
 
     fun insertDataInTable(tableName: String, data: Collection<DBEntity>) {
         logger.info("Trying to insert data in table")
-        val listOfFields = data.first().getValuesMap().keys
+        val listOfFields = data.elementAt(0).getValuesMap().keys
         val statement = StatementBuilder.insertColumnsInTable(tableName, listOfFields)
         val preparedStatement: PreparedStatement
         try {
@@ -85,8 +90,7 @@ class DBConnector {
                 }
                 count++
             }
-            if (element != data.last())
-                preparedStatement.addBatch()
+            preparedStatement.addBatch()
         }
         logger.info("Successfully added " + data.size + " elements to statement")
         try {
@@ -111,14 +115,14 @@ class DBConnector {
         return list
     }
 
-    fun cleanTable(tableName: String, isCascade : Boolean = false) {
+    fun cleanTable(tableName: String, isCascade: Boolean = false) {
         logger.info("Cleaning table $tableName")
         try {
             val statement = connection!!.createStatement()
 //            val statementText = StatementBuilder.deleteAll(tableName)
             val statementText = StatementBuilder.truncateTable(tableName, isCascade)
             statement.executeUpdate(statementText)
-        } catch (e : PSQLException){
+        } catch (e: PSQLException) {
             logger.error("Oops! Cannot clean table $tableName! Something went wrong!")
             e.printStackTrace()
             exitProcess(1)
@@ -126,21 +130,28 @@ class DBConnector {
         logger.info("Cleaned table successfully!")
     }
 
-    fun setFieldToRandomId(tableName: String, tableFrom: String, fieldFk: String, whereCondition : String = "") {
+    fun setFieldToRandomId(tableName: String, tableFrom: String, fieldFk: String, whereCondition: String = "") {
         logger.info("Setting field $fieldFk in table $tableName to random id from $tableFrom")
         try {
             val statement = connection!!.createStatement()
             val statementText =
                 StatementBuilder.setFieldToRandomId(tableName, tableFrom, fieldFk, whereCondition)
             statement.executeUpdate(statementText)
-        } catch (e : PSQLException){
+        } catch (e: PSQLException) {
             logger.error("Oops! Cannot do that! Something went wrong!")
             e.printStackTrace()
             exitProcess(1)
         }
     }
 
-    fun addLinks(table: String, fieldFirst: String, fieldSecond: String, tableFromFirst: String, tableFromSecond: String, quantity: Int) {
+    fun addLinks(
+        table: String,
+        fieldFirst: String,
+        fieldSecond: String,
+        tableFromFirst: String,
+        tableFromSecond: String,
+        quantity: Int
+    ) {
         logger.info("Adding linking rows for $tableFromFirst and $tableFromSecond in table $table")
         try {
             val statementText = StatementBuilder.addLinks(
@@ -153,7 +164,7 @@ class DBConnector {
             )
             val statement = connection!!.createStatement()
             statement.executeUpdate(statementText)
-        } catch (e : PSQLException){
+        } catch (e: PSQLException) {
             logger.error("Oops! Cannot do that! Something went wrong!")
             e.printStackTrace()
             exitProcess(1)

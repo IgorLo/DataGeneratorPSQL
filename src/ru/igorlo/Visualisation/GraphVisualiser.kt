@@ -14,19 +14,29 @@ object GraphVisualiser {
 
     fun main() {
 
-        connection.newConnection()
 
         val graph = loadMapFromDB()
-//        val graph = generateMap(3000)
+//        val graph = GraphWorks.generateLobsterMap(120)
 
-        val viewer = graph.display(true)
-        val view = viewer.defaultView
-        view.resizeFrame(800, 600)
-        Thread.sleep(10000000)
+
+        graph.addAttribute("ui.antialias")
+        graph.addAttribute(
+            "ui.stylesheet", "node { size: 7px; fill-color: rgb(150,150,150); }" +
+                    "edge { fill-color: rgb(255,50,50); size: 2px; }" +
+                    "edge.cut { fill-color: rgba(200,200,200,128); }"
+        )
+
+        graph.display(true)
+
+
+
+//        Thread.sleep(10000000)
 
     }
 
     private fun loadMapFromDB(): Graph {
+        connection.newConnection()
+
         val nodes = mutableListOf<GLocation>()
         val edges = mutableListOf<GRoad>()
 
