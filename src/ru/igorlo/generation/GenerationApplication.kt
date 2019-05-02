@@ -75,6 +75,10 @@ object GenerationApplication {
             Constants.GEN_CHARACTERS_QUANTITY = getUserIntParameter("Characters quantity?")
             Constants.GEN_NPC_FIGHTS_QUANTITY = getUserIntParameter("Npc fights quantity?")
             Constants.GEN_PLAYER_FIGHTS_QUANTITY = getUserIntParameter("Player fights quantity?")
+            Constants.GEN_ITEMS_PLAYERS = getUserIntParameter("Items in inventories? (chars)")
+            Constants.GEN_ITEMS_NPC = getUserIntParameter("Items in inventories? (npc loot)")
+            Constants.GEN_SKILLS_PLAYERS = getUserIntParameter("Skills for characters?")
+            Constants.GEN_SKILLS_NPC = getUserIntParameter("Skills for NPCs?")
         }
 
         val limit = getUserIntParameter("Limit display for tables? (0 for all data)")
@@ -128,7 +132,7 @@ object GenerationApplication {
         println("Generating npcs")
         connector.insertDataInTable(
             "npcs", NPC.generateNpcs(
-                connector.getListOfIds("locations"), 10
+                connector.getListOfIds("locations")
             )
         )
         printResultSet(connector.getResultSetOfSelect("npcs", limit), 20)
@@ -155,13 +159,13 @@ object GenerationApplication {
         connector.setFieldToRandomId("clans", "characters", "fk_leader", "fk_clan = clans.id")
 
         println("Generating link tables")
-        connector.addLinks("link_char_item", "fk_char", "fk_item", "characters", "items", 1000)
+        connector.addLinks("link_char_item", "fk_char", "fk_item", "characters", "items", Constants.GEN_ITEMS_PLAYERS)
         printResultSet(connector.getResultSetOfSelect("link_char_item", limit))
-        connector.addLinks("link_npc_item", "fk_npc", "fk_item", "npcs", "items", 1000)
+        connector.addLinks("link_npc_item", "fk_npc", "fk_item", "npcs", "items", Constants.GEN_ITEMS_NPC)
         printResultSet(connector.getResultSetOfSelect("link_npc_item", limit))
-        connector.addLinks("link_char_skill", "fk_char", "fk_skill", "characters", "skills", 200)
+        connector.addLinks("link_char_skill", "fk_char", "fk_skill", "characters", "skills", Constants.GEN_SKILLS_PLAYERS)
         printResultSet(connector.getResultSetOfSelect("link_char_skill", limit))
-        connector.addLinks("link_npc_skill", "fk_npc", "fk_skill", "npcs", "skills", 200)
+        connector.addLinks("link_npc_skill", "fk_npc", "fk_skill", "npcs", "skills", Constants.GEN_SKILLS_NPC)
         printResultSet(connector.getResultSetOfSelect("link_npc_skill", limit))
         println("-".repeat(20))
 
@@ -222,7 +226,7 @@ object GenerationApplication {
                 1,
                 1
             )
-            print("$idCounter - ${location.id}, ${location.name}")
+//            print("$idCounter - ${location.id}, ${location.name}")
             locationList.add(location)
             idCounter++
         }

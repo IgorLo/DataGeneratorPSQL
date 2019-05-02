@@ -20,6 +20,7 @@ object GraphVisualiser {
 
 
         graph.addAttribute("ui.antialias")
+        graph.addAttribute("ui.quality")
         graph.addAttribute(
             "ui.stylesheet", "node { size: 7px; fill-color: rgb(150,150,150); }" +
                     "edge { fill-color: rgb(255,50,50); size: 2px; }" +
@@ -64,33 +65,24 @@ object GraphVisualiser {
 
         val graph: Graph = SingleGraph("Map")
 
-        graph.addAttribute("ui.quality")
-        graph.addAttribute("ui.antialias")
-        graph.addAttribute(
-            "ui.stylesheet", "graph {" +
-                    "fill-color: white;" +
-                    "}" +
-                    "node {" +
-                    "text-color: black;" +
-                    "text-size: 15px;" +
-                    "}"
-        )
-
         for (node in nodes) {
             val gnode = graph.addNode<Node>(node.id.toString())
             gnode.addAttribute("ui.label", node.name)
 //            gnode.setAttribute("xyz", node.x_coord, node.y_coord, 0)
-            gnode.addAttribute(
-                "ui.style",
-                "fill-color: rgb(${Random.nextInt(255)},${Random.nextInt(255)},${Random.nextInt(255)});"
-            )
         }
 
         for (edge in edges) {
             val gedge = graph.addEdge<Edge>("${edge.from}-${edge.to}", "${edge.to}", "${edge.from}")
             gedge.addAttribute(
                 "ui.style",
-                "fill-color: rgb(${Random.nextInt(100)},${Random.nextInt(100)},${Random.nextInt(100)});\n"
+                "fill-color: rgb(160,160,160);\n"
+            )
+        }
+
+        for (gnode in graph.getNodeSet<Node>()){
+            gnode.addAttribute(
+                "ui.style",
+                "fill-color: rgb(${Math.min (255, 9*gnode.degree)},20,20);"
             )
         }
 
