@@ -1,7 +1,12 @@
-package ru.igorlo.generation
+package ru.igorlo.database
 
 import org.postgresql.util.PSQLException
 import org.slf4j.LoggerFactory
+import ru.igorlo.database.DBParameters.DB_HOST_DEFAULT
+import ru.igorlo.database.DBParameters.DB_NAME_DEFAULT
+import ru.igorlo.database.DBParameters.DB_PASS_DEFAULT
+import ru.igorlo.database.DBParameters.DB_PORT_DEFAULT
+import ru.igorlo.database.DBParameters.DB_USER_DEFAULT
 import ru.igorlo.generation.entities.DBEntity
 import java.sql.*
 import kotlin.system.exitProcess
@@ -11,11 +16,11 @@ class DBConnector {
     private var connection: Connection? = null
 
     fun newConnection(
-        db_name: String = Constants.DB_NAME_DEFAULT,
-        db_user: String = Constants.DB_USER_DEFAULT,
-        db_pass: String = Constants.DB_PASS_DEFAULT,
-        host: String = Constants.DB_HOST_DEFAULT,
-        port: Int = Constants.DB_PORT_DEFAULT
+        db_name: String = DB_NAME_DEFAULT,
+        db_user: String = DB_USER_DEFAULT,
+        db_pass: String = DB_PASS_DEFAULT,
+        host: String = DB_HOST_DEFAULT,
+        port: Int = DB_PORT_DEFAULT
     ) {
         logger.info("Creating new connection to $db_name via $db_user user")
         if (connection != null) {

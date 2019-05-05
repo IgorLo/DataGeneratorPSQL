@@ -1,11 +1,10 @@
-package ru.igorlo.Visualisation
+package ru.igorlo.visualisation
 
 import org.graphstream.graph.Edge
 import org.graphstream.graph.Graph
 import org.graphstream.graph.Node
 import org.graphstream.graph.implementations.SingleGraph
-import ru.igorlo.generation.DBConnector
-import kotlin.random.Random
+import ru.igorlo.database.DBConnector
 
 
 object GraphVisualiser {

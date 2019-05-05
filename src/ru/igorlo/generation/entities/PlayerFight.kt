@@ -1,9 +1,9 @@
 package ru.igorlo.generation.entities
 
-import ru.igorlo.generation.Constants
 import java.sql.Timestamp
 import kotlin.collections.HashMap
 import kotlin.random.Random
+import ru.igorlo.generation.GenerationParameters
 
 
 data class PlayerFight(
@@ -29,7 +29,7 @@ data class PlayerFight(
         fun generatePlayerFights(
             characterSource: Collection<Int>,
             locationSource: Collection<Int>,
-            quantity: Int = Constants.GEN_PLAYER_FIGHTS_QUANTITY,
+            quantity: Int = GenerationParameters.GEN_PLAYER_FIGHTS_QUANTITY,
             randomizer: Random = Random.Default
         ): Collection<PlayerFight> {
             val list = mutableListOf<PlayerFight>()
@@ -60,12 +60,12 @@ data class PlayerFight(
                 charsShuffled[1],
                 locationSource.random(randomizer),
                 randomizer.nextInt(
-                    Constants.GEN_NPC_FIGHTS_PLAYER_LOSTHP_MIN,
-                    Constants.GEN_NPC_FIGHTS_PLAYER_LOSTHP_MAX
+                    GenerationParameters.GEN_NPC_FIGHTS_PLAYER_LOSTHP_MIN,
+                    GenerationParameters.GEN_NPC_FIGHTS_PLAYER_LOSTHP_MAX
                 ),
                 randomizer.nextInt(
-                    Constants.GEN_NPC_FIGHTS_PLAYER_LOSTHP_MIN,
-                    Constants.GEN_NPC_FIGHTS_PLAYER_LOSTHP_MAX
+                    GenerationParameters.GEN_NPC_FIGHTS_PLAYER_LOSTHP_MIN,
+                    GenerationParameters.GEN_NPC_FIGHTS_PLAYER_LOSTHP_MAX
                 )
             )
         }

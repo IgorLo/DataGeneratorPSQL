@@ -1,6 +1,6 @@
 package ru.igorlo.generation.entities
 
-import ru.igorlo.generation.Constants
+import ru.igorlo.generation.GenerationParameters
 import java.util.*
 import kotlin.collections.HashMap
 import kotlin.random.Random
@@ -17,7 +17,7 @@ data class MapConnection(val fk_from_location : Int, val fk_to_location : Int) :
     companion object {
         fun generateConnections(
             source: Collection<Int>,
-            quantity: Int = Constants.GEN_CONNECTIONS_QUANTITY,
+            quantity: Int = GenerationParameters.GEN_CONNECTIONS_QUANTITY,
             randomizer: Random = Random.Default
         ): Collection<MapConnection> {
             if (source.size < 2)

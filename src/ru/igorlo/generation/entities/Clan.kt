@@ -1,6 +1,6 @@
 package ru.igorlo.generation.entities
 
-import ru.igorlo.generation.Constants
+import ru.igorlo.generation.GenerationParameters
 import ru.igorlo.Utilities
 import kotlin.random.Random
 
@@ -14,7 +14,7 @@ data class Clan(val name: String, val rating: Int) : DBEntity {
 
     companion object {
         fun generateClans(
-            quantity: Int = Constants.GEN_CLANS_QUANTITY,
+            quantity: Int = GenerationParameters.GEN_CLANS_QUANTITY,
             randomizer: Random = Random.Default
         ): Collection<Clan> {
             val list = mutableListOf<Clan>()
@@ -28,8 +28,8 @@ data class Clan(val name: String, val rating: Int) : DBEntity {
             return Clan(
                 Utilities.generateClanName(randomizer),
                 randomizer.nextInt(
-                    Constants.GEN_CLANS_MIN_RATING,
-                    Constants.GEN_CLANS_MAX_RATING
+                    GenerationParameters.GEN_CLANS_MIN_RATING,
+                    GenerationParameters.GEN_CLANS_MAX_RATING
                 )
             )
         }

@@ -1,6 +1,6 @@
 package ru.igorlo.generation.entities
 
-import ru.igorlo.generation.Constants
+import ru.igorlo.generation.GenerationParameters
 import ru.igorlo.Utilities
 import kotlin.random.Random
 
@@ -13,7 +13,7 @@ data class City(val name : String) : DBEntity {
 
     companion object {
         fun generateCities(
-            quantity: Int = Constants.GEN_CITIES_QUANTITY,
+            quantity: Int = GenerationParameters.GEN_CITIES_QUANTITY,
             randomizer: Random = Random.Default
         ): Collection<City> {
             val list = mutableListOf<City>()

@@ -1,7 +1,7 @@
 package ru.igorlo
 
 import org.slf4j.LoggerFactory
-import ru.igorlo.generation.Constants
+import ru.igorlo.generation.GenerationParameters
 import ru.igorlo.generation.GenerationApplication.conScanner
 import java.lang.StringBuilder
 import java.sql.ResultSet
@@ -73,11 +73,11 @@ object Utilities {
 
     fun generateRandomString(lenght: Int, randomizer: Random = Random.Default): String {
         val sequence = sequence {
-            yieldAll(generateSequence { randomizer.nextInt(Constants.RANDOM_STRING_SOURCE.length) })
+            yieldAll(generateSequence { randomizer.nextInt(GenerationParameters.RANDOM_STRING_SOURCE.length) })
         }
         return sequence
             .take(lenght)
-            .map(Constants.RANDOM_STRING_SOURCE::get)
+            .map(GenerationParameters.RANDOM_STRING_SOURCE::get)
             .joinToString("")
     }
 
@@ -86,41 +86,41 @@ object Utilities {
 
         //firstname
         stringBuilder
-            .append(Constants.NAMES_FIRSTNAME_FIRSTHALF.random(randomizer))
-            .append(Constants.NAMES_FIRSTNAME_SECONDHALF.random(randomizer))
+            .append(GenerationParameters.NAMES_FIRSTNAME_FIRSTHALF.random(randomizer))
+            .append(GenerationParameters.NAMES_FIRSTNAME_SECONDHALF.random(randomizer))
 
         if (shortName)
             return stringBuilder.toString()
 
         //secondname
         if (randomizer.nextDouble() < 0.6)
-            stringBuilder.append(" ").append(Constants.NAMES_SECOND_NAME.random(randomizer))
+            stringBuilder.append(" ").append(GenerationParameters.NAMES_SECOND_NAME.random(randomizer))
 
         //postfix
         if (randomizer.nextDouble() < 0.6)
-            stringBuilder.append(" ").append(Constants.NAMES_AFTER_NAME.random(randomizer))
+            stringBuilder.append(" ").append(GenerationParameters.NAMES_AFTER_NAME.random(randomizer))
 
         return stringBuilder.toString()
     }
 
     fun generateItemName(randomizer: Random = Random.Default): String {
-        return Constants.GEN_ITEMS_NAMES.random(randomizer)
+        return GenerationParameters.GEN_ITEMS_NAMES.random(randomizer)
     }
 
     fun generateSkillName(randomizer: Random = Random.Default): String {
-        return Constants.GEN_SKILLS_NAMES.random(randomizer)
+        return GenerationParameters.GEN_SKILLS_NAMES.random(randomizer)
     }
 
     fun generateLocationName(randomizer: Random = Random.Default): String {
-        return Constants.GEN_LOCATIONS_NAMES.random(randomizer)
+        return GenerationParameters.GEN_LOCATIONS_NAMES.random(randomizer)
     }
 
     fun generateCityName(randomizer: Random = Random.Default): String {
-        return Constants.GEN_CITIES_NAMES.random(randomizer)
+        return GenerationParameters.GEN_CITIES_NAMES.random(randomizer)
     }
 
     fun generateClanName(randomizer: Random): String {
-        return (Constants.GEN_CLANS_NAMES.random(randomizer) + "_" + generateRandomString(5)).take(20)
+        return (GenerationParameters.GEN_CLANS_NAMES.random(randomizer) + "_" + generateRandomString(5)).take(20)
     }
 
 }

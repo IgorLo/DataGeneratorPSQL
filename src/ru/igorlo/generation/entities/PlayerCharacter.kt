@@ -1,6 +1,6 @@
 package ru.igorlo.generation.entities
 
-import ru.igorlo.generation.Constants
+import ru.igorlo.generation.GenerationParameters
 import ru.igorlo.Utilities
 import kotlin.random.Random
 
@@ -32,7 +32,7 @@ data class PlayerCharacter(
             clanSource: Collection<Int>,
             npcSource: Collection<Int>,
             locationSource: Collection<Int>,
-            quantity: Int = Constants.GEN_CHARACTERS_QUANTITY,
+            quantity: Int = GenerationParameters.GEN_CHARACTERS_QUANTITY,
             randomizer: Random = Random.Default
         ): Collection<PlayerCharacter> {
             val list = mutableListOf<PlayerCharacter>()
@@ -61,20 +61,20 @@ data class PlayerCharacter(
                     randomizer
                 )).take(15),
                 randomizer.nextInt(
-                    Constants.GEN_CHARACTERS_MIN_LEVEL,
-                    Constants.GEN_CHARACTERS_MAX_LEVEL
+                    GenerationParameters.GEN_CHARACTERS_MIN_LEVEL,
+                    GenerationParameters.GEN_CHARACTERS_MAX_LEVEL
                 ),
                 randomizer.nextInt(
-                    Constants.GEN_CHARACTERS_MIN_EXP,
-                    Constants.GEN_CHARACTERS_MAX_EXP
+                    GenerationParameters.GEN_CHARACTERS_MIN_EXP,
+                    GenerationParameters.GEN_CHARACTERS_MAX_EXP
                 ),
                 randomizer.nextInt(
-                    Constants.GEN_CHARACTERS_MIN_HP,
-                    Constants.GEN_CHARACTERS_MAX_HP
+                    GenerationParameters.GEN_CHARACTERS_MIN_HP,
+                    GenerationParameters.GEN_CHARACTERS_MAX_HP
                 ),
                 randomizer.nextInt(
-                    Constants.GEN_CHARACTERS_MIN_MONEY,
-                    Constants.GEN_CHARACTERS_MAX_MONEY
+                    GenerationParameters.GEN_CHARACTERS_MIN_MONEY,
+                    GenerationParameters.GEN_CHARACTERS_MAX_MONEY
                 ),
                 clanSource.random(randomizer),
                 npcSource.random(randomizer),

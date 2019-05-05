@@ -1,7 +1,7 @@
 package ru.igorlo
 
 import ru.igorlo.generation.GenerationApplication
-import ru.igorlo.Visualisation.GraphVisualiser
+import ru.igorlo.visualisation.GraphVisualiser
 import java.util.*
 import kotlin.system.exitProcess
 

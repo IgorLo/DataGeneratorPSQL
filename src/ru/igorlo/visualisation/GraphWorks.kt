@@ -1,4 +1,4 @@
-package ru.igorlo.Visualisation
+package ru.igorlo.visualisation
 
 import org.graphstream.algorithm.generator.*
 import org.graphstream.graph.Graph

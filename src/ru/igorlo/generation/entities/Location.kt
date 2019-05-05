@@ -1,6 +1,6 @@
 package ru.igorlo.generation.entities
 
-import ru.igorlo.generation.Constants
+import ru.igorlo.generation.GenerationParameters
 import ru.igorlo.Utilities
 import kotlin.random.Random
 
@@ -16,7 +16,7 @@ data class Location(val id: Int, val name: String, val x_coord: Int, val y_coord
 
     companion object {
         fun generateLocations(
-            quantity: Int = Constants.GEN_LOCATIONS_QUANTITY,
+            quantity: Int = GenerationParameters.GEN_LOCATIONS_QUANTITY,
             randomizer: Random = Random.Default
         ): Collection<Location> {
             val list = mutableListOf<Location>()
@@ -31,12 +31,12 @@ data class Location(val id: Int, val name: String, val x_coord: Int, val y_coord
                 id,
                 Utilities.generateLocationName(randomizer),
                 randomizer.nextInt(
-                    Constants.GEN_LOCATIONS_MIN_X,
-                    Constants.GEN_LOCATIONS_MAX_X
+                    GenerationParameters.GEN_LOCATIONS_MIN_X,
+                    GenerationParameters.GEN_LOCATIONS_MAX_X
                 ),
                 randomizer.nextInt(
-                    Constants.GEN_LOCATIONS_MIN_Y,
-                    Constants.GEN_LOCATIONS_MAX_Y
+                    GenerationParameters.GEN_LOCATIONS_MIN_Y,
+                    GenerationParameters.GEN_LOCATIONS_MAX_Y
                 )
             )
         }

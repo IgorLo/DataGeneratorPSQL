@@ -1,6 +1,6 @@
 package ru.igorlo.generation.entities
 
-import ru.igorlo.generation.Constants
+import ru.igorlo.generation.GenerationParameters
 import ru.igorlo.Utilities
 import kotlin.random.Random
 
@@ -18,7 +18,7 @@ data class NPC(val name: String, val experience: Int, val description: String, v
     companion object {
         fun generateNpcs(
             locationSource : Collection<Int>,
-            quantity: Int = Constants.GEN_NPCS_QUANTITY,
+            quantity: Int = GenerationParameters.GEN_NPCS_QUANTITY,
             randomizer: Random = Random.Default
         ): Collection<NPC> {
             val list = mutableListOf<NPC>()
@@ -32,8 +32,8 @@ data class NPC(val name: String, val experience: Int, val description: String, v
             return NPC(
                 Utilities.generateNpcName(true, randomizer).take(15),
                 randomizer.nextInt(
-                    Constants.GEN_NPCS_MIN_EXP,
-                    Constants.GEN_NPCS_MAX_EXP
+                    GenerationParameters.GEN_NPCS_MIN_EXP,
+                    GenerationParameters.GEN_NPCS_MAX_EXP
                 ),
                 Utilities.generateRandomString(50, randomizer),
                 locationSource.random(randomizer)

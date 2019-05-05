@@ -1,6 +1,6 @@
 package ru.igorlo.generation.entities
 
-import ru.igorlo.generation.Constants
+import ru.igorlo.generation.GenerationParameters
 import ru.igorlo.Utilities
 import kotlin.random.Random
 
@@ -18,7 +18,7 @@ data class Item(val name: String, val damage: Int, val weight: Int, val price: I
 
     companion object {
         fun generateItems(
-            quantity: Int = Constants.GEN_ITEMS_QUANTITY,
+            quantity: Int = GenerationParameters.GEN_ITEMS_QUANTITY,
             randomizer: Random = Random.Default
         ): Collection<Item> {
             val list = mutableListOf<Item>()
@@ -32,16 +32,16 @@ data class Item(val name: String, val damage: Int, val weight: Int, val price: I
             return Item(
                 Utilities.generateItemName(randomizer),
                 randomizer.nextInt(
-                    Constants.GEN_ITEMS_MIN_DAMAGE,
-                    Constants.GEN_ITEMS_MAX_DAMAGE
+                    GenerationParameters.GEN_ITEMS_MIN_DAMAGE,
+                    GenerationParameters.GEN_ITEMS_MAX_DAMAGE
                 ),
                 randomizer.nextInt(
-                    Constants.GEN_ITEMS_MIN_WEIGHT,
-                    Constants.GEN_ITEMS_MAX_WEIGHT
+                    GenerationParameters.GEN_ITEMS_MIN_WEIGHT,
+                    GenerationParameters.GEN_ITEMS_MAX_WEIGHT
                 ),
                 randomizer.nextInt(
-                    Constants.GEN_ITEMS_MIN_PRICE,
-                    Constants.GEN_ITEMS_MAX_PRICE
+                    GenerationParameters.GEN_ITEMS_MIN_PRICE,
+                    GenerationParameters.GEN_ITEMS_MAX_PRICE
                 )
             )
         }
